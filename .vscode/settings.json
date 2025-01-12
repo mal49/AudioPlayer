@@ -1,0 +1,20 @@
+{
+    "java.project.sourcePaths": [
+        "src"
+    ],
+    "java.project.outputPath": "bin",
+    "java.project.libPaths": ["lib"],
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "java.project.referencedLibraries": [
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx-swt.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.web.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.fxml.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.base.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.swing.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.media.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\jl1.0.1.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\flatlaf-3.5.4.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.controls.jar",
+        "c:\\Users\\ikhmalhanif\\Documents\\UiTM\\CDCS230(DEGREE)\\SEM3\\CSC435\\MINI\\AudioPlayer\\lib\\javafx.graphics.jar"
+    ],
+}
