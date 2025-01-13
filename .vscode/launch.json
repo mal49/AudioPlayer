@@ -16,7 +16,8 @@
             "request": "launch",
             "mainClass": "AudioPlayer",
             "projectName": "AudioPlayer_243dcf8d",
-            "vmArgs": "--module-path Z:/javafx-sdk-23.0.1/lib --add-modules javafx.controls,javafx.fxml"
+            "vmArgs": "--module-path lib/ --add-modules javafx.controls",
+            "args": ""
         }
     ]
 }
