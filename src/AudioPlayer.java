@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import javax.sound.sampled.*;
 import javax.swing.*;
 // import javafx.application.Application;
-// import javafx.scene.media.Media;
-// import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 // import javafx.stage.Stage;
 
 public class AudioPlayer {
