@@ -1,12 +1,8 @@
 import java.awt.*;
-import java.io.File;
+import java.io.*;
 import java.util.ArrayList;
 import javax.sound.sampled.*;
 import javax.swing.*;
-// import javafx.application.Application;
-//import javafx.scene.media.Media;
-//import javafx.scene.media.MediaPlayer;
-// import javafx.stage.Stage;
 
 public class AudioPlayer {
     private Clip audioClip;
@@ -26,7 +22,18 @@ public class AudioPlayer {
         SwingUtilities.invokeLater(() -> new AudioPlayer());
     }
 
+    // Default Constructor
     public AudioPlayer() {
+        setupUI();
+    }
+
+    // Constructor with a playlist file
+    public AudioPlayer(File playlistFile) {
+        loadPlaylistFromFile(playlistFile);
+        setupUI();
+    }
+
+    private void setupUI() {
         JFrame frame = new JFrame("HI DD MUSIC PLAYER");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800, 600);
@@ -115,13 +122,12 @@ public class AudioPlayer {
 
         JPanel volumePanel = new JPanel();
         volumePanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 10, 0));
-        //volumePanel.setBackground(Color.WHITE);
 
         ImageIcon vol = new ImageIcon("./media/volumeicon.png");
         ImageIcon resize = new ImageIcon(vol.getImage().getScaledInstance(16, 16, Image.SCALE_SMOOTH));
         JLabel iconLabel = new JLabel(resize);
 
-        volumeSlider.setPreferredSize(new Dimension(150, 20)); // Increase slider width
+        volumeSlider.setPreferredSize(new Dimension(150, 20));
         volumeSlider.setOpaque(false);
         volumePanel.add(iconLabel);
         volumePanel.add(volumeSlider);
@@ -151,7 +157,12 @@ public class AudioPlayer {
         JMenuBar menuBar = new JMenuBar();
         JMenu fileMenu = new JMenu("File");
         JMenuItem openMenuItem = new JMenuItem("Open");
+        JMenuItem saveMenuItem = new JMenuItem("Save Playlist");
+        JMenuItem loadMenuItem = new JMenuItem("Load Playlist");
+
         fileMenu.add(openMenuItem);
+        fileMenu.add(saveMenuItem);
+        fileMenu.add(loadMenuItem);
         menuBar.add(fileMenu);
         frame.setJMenuBar(menuBar);
 
@@ -164,6 +175,16 @@ public class AudioPlayer {
                 for (File file : selectedFiles) {
                     playlist.add(file);
                 }
+                updatePlaylistDisplay();
+            }
+        });
+
+        saveMenuItem.addActionListener(e -> savePlaylistToFile());
+        loadMenuItem.addActionListener(e -> {
+            JFileChooser fileChooser = new JFileChooser();
+            int result = fileChooser.showOpenDialog(frame);
+            if (result == JFileChooser.APPROVE_OPTION) {
+                loadPlaylistFromFile(fileChooser.getSelectedFile());
                 updatePlaylistDisplay();
             }
         });
@@ -310,6 +331,36 @@ public class AudioPlayer {
             return String.format("%02d:%02d:%02d", hours, minutes, seconds);
         } else {
             return String.format("%02d:%02d", minutes, seconds);
+        }
+    }
+
+    private void savePlaylistToFile() {
+        JFileChooser fileChooser = new JFileChooser();
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
+                for (File audioFile : playlist) {
+                    writer.write(audioFile.getAbsolutePath());
+                    writer.newLine();
+                }
+                JOptionPane.showMessageDialog(null, "Playlist saved successfully.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Error saving playlist: " + e.getMessage());
+            }
+        }
+    }
+
+    private void loadPlaylistFromFile(File file) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            playlist.clear();
+            while ((line = reader.readLine()) != null) {
+                playlist.add(new File(line));
+            }
+            JOptionPane.showMessageDialog(null, "Playlist loaded successfully.");
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Error loading playlist: " + e.getMessage());
         }
     }
 }
